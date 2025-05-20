@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>미로 경로 찾기 시각화</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>미로 경로 찾기 시각화</h1>
+    </header>
+
+    <main>
+        <div class="controls">
+            <div class="control-group">
+                <button id="generate-maze">새 미로 만들기</button>
+                <button id="clear-maze">초기화</button>
+            </div>
+
+            <div class="control-group">
+                <div class="tool-selector">
+                    <button id="wall-tool" class="tool active" data-tool="wall">벽 그리기</button>
+                    <button id="start-tool" class="tool" data-tool="start">시작점 설정</button>
+                    <button id="end-tool" class="tool" data-tool="end">도착점 설정</button>
+                    <button id="erase-tool" class="tool" data-tool="erase">지우개</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <button id="start-pathfinding">경로 찾기</button>
+                <div class="speed-control">
+                    <label for="animation-speed">애니메이션 속도:</label>
+                    <input type="range" id="animation-speed" min="1" max="100" value="50">
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-container">
+            <div id="maze-grid"></div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="cell start"></div>
+                <span>시작점</span>
+            </div>
+            <div class="legend-item">
+                <div class="cell end"></div>
+                <span>도착점</span>
+            </div>
+            <div class="legend-item">
+                <div class="cell wall"></div>
+                <span>벽</span>
+            </div>
+            <div class="legend-item">
+                <div class="cell visited"></div>
+                <span>방문된 셀</span>
+            </div>
+            <div class="legend-item">
+                <div class="cell path"></div>
+                <span>최종 경로</span>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>미로 경로 찾기 시각화 - 너비 우선 탐색(BFS) 알고리즘</p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

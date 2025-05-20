@@ -1,0 +1,246 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+header, footer {
+    text-align: center;
+    padding: 20px 0;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+/* Control Buttons */
+.controls {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+.control-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.tool {
+    background-color: #7f8c8d;
+}
+
+.tool.active {
+    background-color: #2ecc71;
+    font-weight: bold;
+}
+
+#start-pathfinding {
+    background-color: #e74c3c;
+}
+
+#start-pathfinding:hover {
+    background-color: #c0392b;
+}
+
+#clear-maze {
+    background-color: #95a5a6;
+}
+
+#clear-maze:hover {
+    background-color: #7f8c8d;
+}
+
+.speed-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+input[type="range"] {
+    width: 150px;
+}
+
+/* Grid Styles */
+.grid-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+#maze-grid {
+    display: grid;
+    grid-template-columns: repeat(25, 1fr);
+    grid-template-rows: repeat(25, 1fr);
+    gap: 1px;
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 1/1;
+    background-color: #ddd;
+    border: 2px solid #aaa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cell {
+    background-color: white;
+    aspect-ratio: 1/1;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+/* Cell States */
+.cell.wall {
+    background-color: #34495e;
+    border-radius: 0;
+}
+
+.cell.start {
+    background-color: #3498db;
+    border-radius: 50%;
+}
+
+.cell.end {
+    background-color: #e74c3c;
+    border-radius: 50%;
+}
+
+.cell.visited {
+    background-color: #9b59b6;
+    animation: visitAnimation 0.5s ease;
+}
+
+.cell.path {
+    background-color: #f1c40f;
+    animation: pathAnimation 0.5s ease;
+    border-radius: 20%;
+}
+
+@keyframes visitAnimation {
+    0% {
+        transform: scale(0.3);
+        background-color: rgba(0, 217, 159, 0.75);
+    }
+    50% {
+        background-color: rgba(0, 190, 218, 0.75);
+    }
+    75% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        background-color: #9b59b6;
+    }
+}
+
+@keyframes pathAnimation {
+    0% {
+        transform: scale(0.6);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Legend Styles */
+.legend {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.legend .cell {
+    width: 20px;
+    height: 20px;
+    cursor: default;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #maze-grid {
+        grid-template-columns: repeat(20, 1fr);
+        grid-template-rows: repeat(20, 1fr);
+    }
+    
+    .controls {
+        gap: 10px;
+    }
+    
+    .control-group {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    button {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    #maze-grid {
+        grid-template-columns: repeat(15, 1fr);
+        grid-template-rows: repeat(15, 1fr);
+    }
+    
+    .legend {
+        flex-direction: column;
+        align-items: center;
+    }
+}
